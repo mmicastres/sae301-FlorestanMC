@@ -1,0 +1,52 @@
+{% extends "index.html.twig" %}
+
+{% block section %}
+<div class="container" style="max-width:850px">
+  <div class="row">
+{% for info in proj %}
+    <h1>{{info.titre}}</h1>
+    
+    <img src="{{info.image}}" style=" width: 850px; height: 228px; object-fit: cover; margin-bottom: 1rem;"alt="image de {{info.titre}}">
+    <div id="description">
+    <h3 class="f-bold">Description :</h3>
+    <p>{{info.description}}</p>
+    </div>
+
+    <div id="demo"c class="d-flex">
+    <h3 style="margin-top: auto; margin-bottom: auto;font-weight: 500;line-height: auto;">Démo :  </h3> 
+
+    <button style="background: #17A2B8;border-radius:40px;font-weight:normal;border:none;padding:1vh; margin-left:3vh;margin-top: 3vh;margin-bottom:3vh;"><a href="{{info.demo}}" style="text-decoration:none;color: white; vertical-align: middle; font-weight: 500; font-size: 16px;">Lien vers le projet</a></button>
+    
+    
+    </div>
+{% endfor %}  
+    <div id="Contributeurs">
+    <h3>Contributeurs :</h3>
+    <p style="color: #17A2B8; font-style: italic; font-weight: 400;">
+    {% for contrs in contr %}
+
+    {{contrs.nom}} {{contrs.prenom}}&nbsp&nbsp
+
+    {% endfor %}
+    </p>
+    </div>
+    <div id="Tags">
+    <h3>Tags :</h3>
+    <p style="font-style: italic; font-weight: 700;">
+    {% for tags in tag %}
+
+    #{{tags.nomtag}}
+
+    {% endfor %}
+    </p>
+    </div>
+{% for info in proj %}
+    <div id="sources">  
+    <h3 class="f-bold">Sources :</h3>
+    <br>
+    <p>{{info.sources}}</p>
+    </div>
+{% endfor %}
+  </div>
+</div>
+{% endblock %} 

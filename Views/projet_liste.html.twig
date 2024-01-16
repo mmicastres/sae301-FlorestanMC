@@ -1,0 +1,29 @@
+
+{% extends "index.html.twig" %}
+
+{% block section %}
+<div class="container">
+  <div class="row">
+{% for proj in projs %}
+<div class="col-6">
+   <div class="card mx-auto" style="width: 18rem;box-shadow: 0px 0px 88.364px 11.046px rgba(0, 0, 0, 0.15); border-radius: 20px;">
+  <img src="{{proj.image}}" style="border-radius:20px;" class="card-img-top" alt='image de "{{proj.titre}}"'>
+  <div class="card-body">
+    <h5 class="card-title">SAÉ 3.DWeb-DI.01 </h5>
+    <p class="card-text">{{proj.titre}}</p>
+    <form action="index.php" method="post">
+    <input type="hidden" id="Id_Projet" name="Id_Projet" value="{{proj.idProjet}}">
+    <input type="hidden" id="Id_Context" name="Id_Contexte" value="{{proj.idContexte}}">
+    <input type="submit" name="voirprojet" id="voirprojet" value="Voir +"/>
+    </form>
+    
+  </div>
+  </div>
+</div>   
+{% endfor %}
+  </div>
+</div>
+{% endblock %}
+
+
+
