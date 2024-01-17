@@ -1,6 +1,6 @@
 <?php 
 
-class TagsManager {
+class CategoriesManager {
 
     private $_db; // Instance de PDO - objet de connexion au SGBD
 	
@@ -13,12 +13,12 @@ class TagsManager {
 
     /**
 	* retourne l'ensemble des contributeurs présents dans la BD 
-	* @return Tag[]
+	* @return Categorie[]
 	*/
 
-    public function tagsProjet($id_Projet){
-		$tags = array();
-		$req = "SELECT Nom_Tag FROM `SAE301_Tags` INNER JOIN SAE301_Caracterise ON SAE301_Caracterise.Id_Tags = SAE301_Tags.Id_Tags INNER JOIN SAE301_Projet ON SAE301_Projet.Id_Projet = SAE301_Caracterise.Id_Projet WHERE SAE301_Projet.Id_Projet = ?;";
+    public function categoriesProjet($id_Projet){
+		$categories = array();
+		$req = "SELECT Nom_Categorie FROM `SAE301_Categorie` INNER JOIN SAE301_Appartient ON SAE301_Appartient.Id_Categorie = SAE301_Categorie.Id_Categorie INNER JOIN SAE301_Projet ON SAE301_Projet.Id_Projet = SAE301_Appartient.Id_Projet WHERE SAE301_Projet.Id_Projet = ?;";
 		$stmt = $this->_db->prepare($req);
 		$stmt->execute(array($id_Projet));
 		// pour debuguer les requêtes SQL
@@ -29,9 +29,9 @@ class TagsManager {
 		// recup des données
 		while ($donnees = $stmt->fetch())
 		{
-			$tags[] = new Tag($donnees);
+			$categories[] = new Categorie($donnees);
 		}
-		return $tags;
+		return $categories;
 	}
 
 }

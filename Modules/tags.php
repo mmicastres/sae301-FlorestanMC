@@ -7,7 +7,7 @@
 class Tag {
 
 	private int $_idtag;
-	private int $_nomtag;
+	private string $_nomtag;
 
 	
 	public function __construct(array $donnees) {
@@ -25,6 +25,6 @@ class Tag {
 	// SETTERS
 
     public function setIdTag(int $idtag)   { $this->_idtag =  $idtag;}
-	public function setNomTag(int $nomtag) { $this->_nomtag = $nomtag; }
+	public function setNomTag(string $nomtag) { $this->_nomtag = $nomtag; }
 
 }

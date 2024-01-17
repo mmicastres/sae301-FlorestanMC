@@ -38,7 +38,7 @@ class ProjetManager {
 	}
 
 	public function voirProjet($id_Projet) {
-		$proj = array();
+		$projs = array();
 		$req = "SELECT SAE301_Projet.Id_Projet, Titre, Description, Image, Demo, Sources, Id_Contexte FROM `SAE301_Projet` WHERE SAE301_Projet.Id_Projet = ?; ";
 		$stmt = $this->_db->prepare($req);
 		$stmt->execute(array($id_Projet));
@@ -50,9 +50,9 @@ class ProjetManager {
 		// récup des données
 		while ($donnees = $stmt->fetch())
 		{
-			$proj[] = new Projet($donnees);
+			$projs[] = new Projet($donnees);
 		}
-		return $proj;
+		return $projs;
 	}
 
 	/**

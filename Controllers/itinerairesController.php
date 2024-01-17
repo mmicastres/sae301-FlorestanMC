@@ -2,19 +2,26 @@
 
 include "Modules/itineraires.php";
 include "Modules/contributeur.php";
+include "Modules/tags.php";
+include "Modules/categories.php";
+include "Modules/commentaires.php";
 include "Models/itinerairesManager.php";
 include "Models/contributeurManager.php";
 include "Models/tagsManager.php";
+include "Models/categoriesManager.php";
+include "Models/commentairesManager.php";
 /**
-* Définition d'une classe permettant de gérer les itinéraires 
+* Définition d'une classe permettant de gérer les projets 
 *   en relation avec la base de données	
 */
 
 class ProjetController {
 
 	private $projManager; // instance du manager
-	private $utilisateurManager;
-	private $tagsManager;
+	private $utilisateursManager; // instance du manager
+	private $tagsManager; // instance du manager
+	private $categoriesManager; // instance du manager
+	private $commentairesManager; // instance du manager
 	private $twig;
 	
 
@@ -22,9 +29,12 @@ class ProjetController {
 	* Constructeur = initialisation de la connexion vers le SGBD
 	*/
 	public function __construct($db, $twig) {
-		$this->projManager = new ProjetManager($db);
-		$this->utilisateurManager = new UtilisateurManager($db);
-		$this->tagsManager = new TagsManager($db);
+
+		$this->projManager         = new ProjetManager($db);
+		$this->utilisateursManager = new UtilisateursManager($db);
+		$this->tagsManager         = new TagsManager($db);
+		$this->categoriesManager   = new CategoriesManager($db);
+		$this->commentairesManager = new CommentairesManager($db);
 		$this->twig = $twig;
 		
 	}
@@ -42,11 +52,17 @@ class ProjetController {
 
 	public function pageProjet() {
 		
-		$projet = $this->projManager->voirProjet($_POST["Id_Projet"]);
-		$contributeurs = $this->utilisateurManager->contrProjet($_POST["Id_Projet"]);
-		// $tags = $this->tagsManager->tagsProjet($_POST["Id_Projet"]);
-		echo $this->twig->render('projet_page.html.twig',array('proj'=>$projet,'contr'=>$contributeurs,'acces'=> $_SESSION['acces']));
-		// var_dump($contributeurs);
+		$projets       = $this->projManager->voirProjet($_POST["Id_Projet"]);
+		$contributeurs = $this->utilisateursManager->contrProjet($_POST["Id_Projet"]);
+		$tags          = $this->tagsManager->tagsProjet($_POST["Id_Projet"]);
+		$categories    = $this->categoriesManager->categoriesProjet($_POST["Id_Projet"]);
+		$commentaires  = $this->commentairesManager->commentairesProjet($_POST["Id_Projet"]);
+
+		// render la view twig avec les différentes valeurs provenant des requetes contenues dans des variables
+		echo $this->twig->render('projet_page.html.twig',array('projs'=>$projets,'contrs'=>$contributeurs,'tags'=>$tags,'categories'=>$categories,'acces'=> $_SESSION['acces']));
+
+		// var_dump($categories) Si besoin de vérifier ce qu'il y a dans la variable; 
+		
 	}
 	/**
 	* form de saisie des criteres

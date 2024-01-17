@@ -3,19 +3,19 @@
 {% block section %}
 <div class="container" style="max-width:850px">
   <div class="row">
-{% for info in proj %}
-    <h1>{{info.titre}}</h1>
+{% for proj in projs %}
+    <h1>{{proj.titre}}</h1>
     
-    <img src="{{info.image}}" style=" width: 850px; height: 228px; object-fit: cover; margin-bottom: 1rem;"alt="image de {{info.titre}}">
+    <img src="{{proj.image}}" style=" width: 850px; height: 228px; object-fit: cover; margin-bottom: 1rem;"alt="image de {{proj.titre}}">
     <div id="description">
     <h3 class="f-bold">Description :</h3>
-    <p>{{info.description}}</p>
+    <p>{{proj.description}}</p>
     </div>
 
-    <div id="demo"c class="d-flex">
+    <div id="demo">
     <h3 style="margin-top: auto; margin-bottom: auto;font-weight: 500;line-height: auto;">Démo :  </h3> 
 
-    <button style="background: #17A2B8;border-radius:40px;font-weight:normal;border:none;padding:1vh; margin-left:3vh;margin-top: 3vh;margin-bottom:3vh;"><a href="{{info.demo}}" style="text-decoration:none;color: white; vertical-align: middle; font-weight: 500; font-size: 16px;">Lien vers le projet</a></button>
+    <button style="background: #17A2B8;border-radius:40px;font-weight:normal;border:none;padding:1vh;margin-top: 3vh;margin-bottom:3vh;"><a href="{{proj.demo}}" style="text-decoration:none;color: white; vertical-align: middle; font-weight: 500; font-size: 16px;">Lien vers le projet</a></button>
     
     
     </div>
@@ -23,30 +23,43 @@
     <div id="Contributeurs">
     <h3>Contributeurs :</h3>
     <p style="color: #17A2B8; font-style: italic; font-weight: 400;">
-    {% for contrs in contr %}
+    {% for contr in contrs %}
 
-    {{contrs.nom}} {{contrs.prenom}}&nbsp&nbsp
+    {{contr.nom}} {{contr.prenom}}&nbsp&nbsp
 
     {% endfor %}
     </p>
     </div>
     <div id="Tags">
     <h3>Tags :</h3>
-    <p style="font-style: italic; font-weight: 700;">
-    {% for tags in tag %}
+    <p style="font-style: italic; font-weight: 400;">
+    {% for tag in tags %}
 
-    #{{tags.nomtag}}
+    #{{tag.nomtag}}
 
     {% endfor %}
     </p>
     </div>
-{% for info in proj %}
+    <div id="categories">
+    
+    <h3>Catégories :</h3>
+    {% for categorie in categories %}
+    <button style="padding:1vh; border-radius:40px;background: #000;border:none;margin-top: 3vh;margin-bottom:3vh;"><a style="color: white;">{{categorie.nomcategorie}}</a></button>&nbsp&nbsp
+    {% endfor %}
+    </div>
+{% for proj in projs %}
     <div id="sources">  
     <h3 class="f-bold">Sources :</h3>
     <br>
-    <p>{{info.sources}}</p>
+    <p>{{proj.sources}}</p>
     </div>
 {% endfor %}
+    <div id="profilcom" class="d-flex flex-row">
+      <img style="object-fit: cover; width: 60px; height: 60px; border-radius: 50%;" src="assets/image-attractive-960x540.jpg" alt="Photo de profil de ">
+      <h3 class="d-flex align-items-center" style="margin-bottom:0;margin-left:20px">Vincent Moreau</h3>
+    </div>
+    <p style="text-align:justify;">Le développement des parcours utilisateur semble présenter quelques défis. La navigation manque de fluidité à certains endroits, et la clareté des informations pourrrait être améliorée. Certains choix d'interactions semblent moins intuitifs, ce qui pourrait créer des friction pour les utilisateurs. Il serait utile de revisiter certains aspects pour améliorer l'ergonomie globable du système d'information.</p>
+    <i style="color:grey;">Le 8/12/2023</i>
   </div>
 </div>
 {% endblock %} 
