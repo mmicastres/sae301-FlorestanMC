@@ -1,0 +1,89 @@
+{% extends "index.html.twig" %}
+
+{% block section %}
+
+<form method="post" action="index.php" enctype="multipart/form-data" class="well">
+
+    <fieldsetclass="form-group">
+      <div class="row">
+        <div class="col">
+        {% for projet in oldinfos %}
+        <input type="text" id="Titre" class="form-control" name="Titre" value="{{projet.titre}}" required placeholder="*Titre du projet">
+        {% endfor %}
+        </div>
+        <div class="col">
+            <select name="Id_Contexte" class="form-control form-control-sm">
+                {% for ressource in oldressource %}
+                <option name="Id_Contexte" selected hidden value="{{ressource.idressource}}">{{ressource.libelle}} - {{ressource.semestre}} - {{ressource.nom}}</option>
+                {% endfor %}
+                {% for ressource in ressources %}
+                <option name="Id_Contexte" value="{{ressource.idressource}}">{{ressource.libelle}} - {{ressource.semestre}} - {{ressource.nom}}</option>
+                {% endfor %}
+            </select>
+        </div>
+      </div>
+    <div class="row">
+        <div class="col">
+        {% for projet in oldinfos %}
+        <input type="text" id="Description" class="form-control" name="Description" value="{{projet.description}}" required placeholder="*Description du projet">
+        {% endfor %}
+        </div>
+    </div>   
+      <div class="row h-25">
+        <div class="col">
+        {% for projet in oldinfos %}
+        <img class="img-fluid w-50" src="{{projet.image}}" alt="image de {{projet.titre}}">
+        {% endfor %}
+        <label for="img-fluid">Ancienne Image</label>
+        <br>
+        
+        <label for="Image">Déposez votre Image ici</label>
+        {% for projet in oldinfos %}
+        <input type="hidden" id="Image" class="form-control" name="Image" value="{{projet.image}}">
+        {% endfor %}
+        <input type="file" id="newimage" class="form-control" name="Image" placeholder ="*Image" accept="image/png, image/jpeg" />
+        
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+        {% for projet in oldinfos %}
+        <input id="Demo" type="text" class="form-control" name="Demo" value ="{{projet.demo}}" required placeholder="*Lien vers la démo">
+        {% endfor %}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col"> 
+        {% for projet in oldinfos %}
+        <input id="Sources" type="text" class="form-control" value ="{{projet.sources}}" name="Sources" required placeholder="*Liens vers les sources" style="min-width:100%">
+        {% endfor %}
+        </div>
+      </div>
+      <div class="d-flex">
+      {% for contributeur in contributeurs %}
+      
+      <input class="form-check-input" type="checkbox" name="Contributeurs[]" {% for oldcontributeur in oldcontributeurs %} {% if oldcontributeur.idutilisateur == contributeur.idutilisateur %} checked {% endif %} {% endfor %} value="{{contributeur.idutilisateur}}" id="{{contributeur.nom}}{{contributeur.prenom}}">
+      <label class="form-check-label" for="flexCheckDefault">{{contributeur.nom}} {{contributeur.prenom}}</label>
+      {% endfor %}
+      </div>
+      <div class="d-flex">
+      {% for tag in tags %}
+      <input class="form-check-input" type="checkbox" name="Tags[]" {% for oldtag in oldtags %} {% if oldtag.idtag == tag.idtag %} checked {% endif %} {% endfor %} value="{{tag.idtag}}" id="{{tag.nomtag}}">
+      <label class="form-check-label" for="flexCheckDefault">{{tag.nomtag}}</label>
+      {% endfor %}
+      </div>
+      <div class="d-flex">
+      {% for categorie in categories %}
+      <input class="form-check-input" type="checkbox" name="Categories[]" {% for oldcategorie in oldcategories %} {% if oldcategorie.idcategorie == categorie.idcategorie %} checked {% endif %} {% endfor %} value="{{categorie.idcategorie}}" id="{{categorie.nomcategorie}}">
+      <label class="form-check-label" for="flexCheckDefault">{{categorie.nomcategorie}}</label>
+      {% endfor %}
+      </div>
+      {% for projet in oldinfos %}
+      <input type="hidden" name="Id_Projet" value="{{projet.idprojet}}">
+      {% endfor %}
+    <input type="submit" id="create" class="btn btn-primary" name="valider_modifprojet" value="Modifier le projet"/>
+    
+   </fieldset>
+   </form>
+
+   {% endblock %} 

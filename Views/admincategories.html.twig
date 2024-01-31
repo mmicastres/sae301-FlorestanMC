@@ -1,0 +1,51 @@
+{% extends "index.html.twig" %}
+
+{% block section %}
+
+<h1>GESTION CATÉGORIES</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Nom Catégorie</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for categorie in categories %}
+    <tr>
+      <th scope="row">{{categorie.idcategorie}}</th>
+      <td>{{categorie.nomcategorie}}</td>
+    </tr>
+
+    {% endfor %}
+  </tbody>
+</table>
+<div class="d-flex justify-content-around">
+<form action="index.php" method="post">
+    <fieldset>
+        <legend>Choix de la Catégorie à supprimer</legend>
+        <select name="Id_Categorie" class="form-control form-control-sm">
+        <option value="Choix :"selected hidden disabled >Choisir une Catégorie</option>
+        {% for categorie in categories %}
+        <option name="Id_Categorie" value="{{categorie.idcategorie}}">{{categorie.nomcategorie}}</option>
+        {% endfor %}
+        </select>
+        <br>
+        <input type="submit" class="btn btn-primary create mb-5" name="valider_suppcategorie" value="Supprimer" />
+    </fieldset>
+</form>
+<a href="?action=ajoutcategorie" class="btn btn-primary create">Ajouter une Catégorie</a>
+<form action="index.php" method="post">
+<fieldset><legend>Choix de la Catégorie à modifier</legend>
+    <select name="Id_Categorie" class="form-control form-control-sm">
+    <option value="Choix :"selected hidden disabled >Choisir une Categorie</option>
+    {% for categorie in categories %}
+      <option name="Id_Categorie" value="{{categorie.idcategorie}}">{{categorie.nomcategorie}}</option>
+    {% endfor %}
+    </select>
+    <br>
+    <input type="submit" class="btn btn-primary create mb-5" name="saisie_modifcategorie" value="Modifier" />
+</fieldset>
+</form>
+</div>
+{% endblock %} 

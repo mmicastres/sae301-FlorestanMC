@@ -54,12 +54,38 @@
     <p>{{proj.sources}}</p>
     </div>
 {% endfor %}
+<h3>Commentaires :</h3>
+{% for commentaire in commentaires %}
     <div id="profilcom" class="d-flex flex-row">
-      <img style="object-fit: cover; width: 60px; height: 60px; border-radius: 50%;" src="assets/image-attractive-960x540.jpg" alt="Photo de profil de ">
-      <h3 class="d-flex align-items-center" style="margin-bottom:0;margin-left:20px">Vincent Moreau</h3>
+      <img style="object-fit: cover; width: 60px; height: 60px; border-radius: 50%;" src="{{commentaire.imageprofil}}" alt="Photo de profil de {{commentaire.prenom}} {{commentaire.nom}}">
+      <h4 class="d-flex align-items-center" style="margin-bottom:0;margin-left:20px">{{commentaire.prenom}} {{commentaire.nom}}</h4>
     </div>
-    <p style="text-align:justify;">Le développement des parcours utilisateur semble présenter quelques défis. La navigation manque de fluidité à certains endroits, et la clareté des informations pourrrait être améliorée. Certains choix d'interactions semblent moins intuitifs, ce qui pourrait créer des friction pour les utilisateurs. Il serait utile de revisiter certains aspects pour améliorer l'ergonomie globable du système d'information.</p>
-    <i style="color:grey;">Le 8/12/2023</i>
+    <p style="text-align:justify;">{{commentaire.textecommentaire}}</p>
+    <i style="color:grey;">{{commentaire.datecommentaire}}</i>
+  
+{% endfor %}
+{% if acces == "oui" %}
+<h3>Ajouter un commentaire :</h3>
+<form method="post" action="index.php">
+  <div class="form-group">
+      <textarea class="form-control" name="Texte_Commentaire" required placeholder="Ecrivez ici :"></textarea>
+      {% for proj in projs %}
+      <input type="hidden" id="Id_Projet" name="Id_Projet" value="{{proj.idProjet}}">
+      <input type="hidden" id="Id_Context" name="Id_Contexte" value="{{proj.idContexte}}">
+      {% endfor %}
+      <input type="submit" id="create" class="btn btn-primary" name="valider_commentaire" value="Ajouter le commentaire"/>
   </div>
+</form>
+{% else %}
+<h3>Ajouter un commentaire :</h3>
+<form method="post" action="index.php">
+  <div class="form-group">
+      <textarea class="form-control" name="Texte_Commentaire" readonly placeholder="Vous devez être connecté pour pouvoir poster un commentaire !"></textarea>
+      <br>
+      <a type="submit" id="create" class="btn btn-primary" href="?action=inscription" />Se connecter</a>
+  </div>
+</form>
+{% endif %}
+</div>
 </div>
 {% endblock %} 

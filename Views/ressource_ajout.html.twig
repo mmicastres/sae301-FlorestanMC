@@ -1,0 +1,26 @@
+{% extends "index.html.twig" %}
+
+{% block section %}
+
+  <h1>AJOUT RESSOURCES</h1>
+
+   <form method="post" action="index.php" class="well">
+                    <fieldsetclass="form-group">
+
+      <div class="row">
+        <div class="col">
+        <input type="text" id="Identifiant" class="form-control" name="Identifiant" required placeholder="*Libellé">
+        </div>
+        <div class="col">
+        <input type="text" id="Semestre" class="form-control" name="Semestre" required placeholder="*Semestre">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+        <input type="text" id="Intitule" class="form-control" name="Intitule" required placeholder="*Nom">
+        </div>
+      </div>
+    <input type="submit" id="create" class="btn btn-primary" name="ressourceajout" value="valider l'ajout"/>
+   </fieldset>
+   </form>
+{% endblock %}

@@ -2,7 +2,7 @@
 {% extends "index.html.twig" %}
 
 {% block section %}
-<h2>
+
 {% for proj in projs %}
       <tr><td>{{proj.titre}}</td><td>{{proj.description}}</td><td><img style="max-width: 20vw; max-height: 20vw;" src="{{proj.image}}"></td></tr>
 {% endfor %}

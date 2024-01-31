@@ -1,0 +1,56 @@
+{% extends "index.html.twig" %}
+
+{% block section %}
+
+<h1>GESTION RESSOURCES</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Libellé</th>
+      <th scope="col">Semestre</th>
+      <th scope="col">Libellé</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for ressource in ressources %}
+    <tr>
+      <th scope="row">{{ressource.idressource}}</th>
+      <td>{{ressource.libelle}}</td>
+      <td>{{ressource.semestre}}</td>
+      <td>{{ressource.nom}}</td>
+      
+    </tr>
+
+  {% endfor %}
+  </tbody>
+</table>
+<div class="d-flex justify-content-around">
+<form action="index.php" method="post">
+    <fieldset>
+        <legend>Choix de la ressource à supprimer</legend>
+        <select name="Id_Contexte" class="form-control form-control-sm">
+        <option value="Choix :"selected hidden disabled >Choisir une Ressource</option>
+        {% for ressource in ressources %}
+        <option name="Id_Contexte" value="{{ressource.idressource}}">{{ressource.libelle}} - {{ressource.semestre}} - {{ressource.nom}}</option>
+        {% endfor %}
+        </select>
+        <br>
+        <input type="submit" class="btn btn-primary create mb-5" name="valider_suppressource" value="Supprimer" />
+    </fieldset>
+</form>
+<a href="?action=ajoutressource" class="btn btn-primary create">Ajouter une Ressource</a>
+<form action="index.php" method="post">
+<fieldset><legend>Choix de la ressource à modifier</legend>
+    <select name="Id_Contexte" class="form-control form-control-sm">
+    <option value="Choix :"selected hidden disabled >Choisir une Ressource</option>
+    {% for ressource in ressources %}
+      <option name="Id_Contexte" value="{{ressource.idressource}}">{{ressource.libelle}} - {{ressource.semestre}} - {{ressource.nom}}</option>
+    {% endfor %}
+    </select>
+    <br>
+    <input type="submit" class="btn btn-primary create mb-5" name="saisie_modifressource" value="Modifier" />
+</fieldset>
+</form>
+</div>
+{% endblock %} 

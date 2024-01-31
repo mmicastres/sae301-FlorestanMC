@@ -1,0 +1,42 @@
+{% extends "index.html.twig" %}
+
+{% block section %}
+
+<h1>ADMINISTRATION</h1>
+<div class="row row-cols-2">
+    <div class="box col">
+    <h2>GESTION SAE/RESSOURCES</h2>
+    <a href="?action=modifressources" class="btn btn-primary create">Modifier les SAE/RESSOURCES</a>
+    </div>
+    <div class="box col">
+    <h2>GESTION CATÉGORIES</h2>
+    <a href="?action=modifcategories" class="btn btn-primary create">Modifier les CATÉGORIES</a>
+    </div>
+    <div class="box col">
+    <h2>GESTION UTILISATEURS</h2>
+    <a href="?action=modifutilisateurs" class="btn btn-primary create">Modifier les UTILISATEURS</a>
+    </div>
+</div>
+<h2>Validation des projets</h2>
+<div class="row row-cols-2">
+    {# {{% for projets in w8ingprojets %}} #}
+        <div class="col">
+            <div class="card mx-auto" style="width: 18rem;box-shadow: 0px 0px 88.364px 11.046px rgba(0, 0, 0, 0.15); border-radius: 20px;">
+                    <img src="assets/dev.jpg" style="border-radius:20px;" class="card-img-top" alt='image de "dev.jpg"'>
+                <div class="card-body">
+                        <h5 class="card-title">SAÉ 3.DWeb-DI.01 </h5>
+                        <p class="card-text">blablablabla blablabla</p>
+                        <form action="index.php" method="post">
+                        <input type="hidden" id="Id_Projet" name="Id_Projet" value="">
+                        <input type="hidden" id="Id_Context" name="Id_Contexte" value="">
+                        <div id="voirvalidsupp" class="row">
+                            <input type="submit" class="btn create" name="voirprojet" id="voirprojet" value="Voir +"/>
+                            <input type="submit" class="btn btn-success" name="validprojet" id="validprojet" value="Valider"/>
+                            <input type="submit" class="btn btn-danger" name="supprojet" id="supprojet" value="Supprimer"/>
+                        </div>
+                        </form>
+                </div>
+            </div>
+        </div>   
+    {# {{% endfor %}} #}
+{% endblock %} 

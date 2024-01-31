@@ -1,0 +1,62 @@
+{% extends "index.html.twig" %}
+
+{% block section %}
+
+<h1>GESTION UTILISATEURS</h1>
+<fieldset>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Nom</th>
+      <th scope="col">Prénom</th>
+      <th scope="col">Identifiant IUT</th>
+      {# <th scope="col">Sélectionner</th> #}
+    </tr>
+  </thead>
+  <tbody>
+  {% for utilisateur in utilisateurs %}
+    <tr>
+      <th scope="row">{{utilisateur.idutilisateur}}</th>
+      <td>{{utilisateur.nom}}</td>
+      <td>{{utilisateur.prenom}}</td>
+      <td>{{utilisateur.idiut}}</td>
+      {# <td><input class="form-check-input" type="checkbox" id="checkboxNoLabel" name="{{categorie.idcategorie}}" aria-label=""></td> #}
+    </tr>
+
+    {% endfor %}
+    
+  </tbody>
+  </div>
+</table>
+<div class="d-flex justify-content-around">
+<form action="index.php" method="post">
+    <fieldset>
+        <legend>Choix de l'utilisateur à supprimer</legend>
+        <select name="Id_Utilisateur" class="form-control form-control-sm">
+        <option value="Choix :"selected hidden disabled >Choisir un Utilisateur</option>
+        {% for utilisateur in utilisateurs %}
+        <option name="Id_Utilisateur" value="{{utilisateur.idutilisateur}}">{{utilisateur.nom}} - {{utilisateur.prenom}} </option>
+        {% endfor %}
+        </select>
+        <br>
+        <input type="submit" class="btn btn-primary create mb-5" name="valider_supp" value="Supprimer" />
+    </fieldset>
+</form>
+<a href="?action=ajout" class="btn btn-primary create">Ajouter un Utilisateur</a>
+<form action="index.php" method="post">
+<fieldset><legend>Choix de l'utilisateur à modifier</legend>
+    <select name="Id_Utilisateur" class="form-control form-control-sm">
+    <option value="Choix :"selected hidden disabled >Choisir un Utilisateur</option>
+    {% for utilisateur in utilisateurs %}
+      <option value="{{utilisateur.idutilisateur}}">{{utilisateur.nom}} - {{utilisateur.prenom}} </option>
+    {% endfor %}
+    </select>
+    <br>
+    <input type="submit" class="btn btn-primary create mb-5" name="saisie_modif" value="Modifier" />
+</fieldset>
+</form>
+</div>
+ 
+{% endblock %} 
+

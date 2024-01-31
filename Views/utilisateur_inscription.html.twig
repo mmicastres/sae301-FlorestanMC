@@ -1,0 +1,96 @@
+{% extends "index.html.twig" %}
+
+{% block section %}
+
+   
+   
+   <div id="containconnexion" class="d-flex mx-auto w-auto align-middle ">
+        
+        <div id="containform" class="w-100 d-flex flex-column justify-content-center">  
+
+                <i id="retour" class="bi bi-arrow-left h2"></i>
+                   
+                <h1 class="fw-bold">PAGE D'INSCRIPTION</h1>
+                <div class="d-flex">
+                <legend>Bienvenue !</legend>
+                <legend style="font-size:10px;">*obligatoire</p>
+                </div>
+                
+                <form method="post" onsubmit="return validation()" action="index.php" enctype="multipart/form-data">
+                    <fieldsetclass="form-group">
+
+      <div class="row">
+        <div class="col">
+        <input type="text" id="Nom" class="form-control" name="Nom" required placeholder="*Nom">
+        </div>
+        <div class="col">
+        <input type="text" id="Prenom" class="form-control" name="Prenom" required placeholder="*Prénom">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+        <input type="text" id="Mail" class="form-control" name="Mail" required placeholder="*Email finissant en iut-tlse3.fr !" pattern=".+iut-tlse3.fr">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+        <input id="Identifiant_IUT" type="text" class="form-control" name="Identifiant_IUT" required placeholder="*Identifiant IUT">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label for="Imageprofil">Déposez votre Image ici</label>
+          <input type="file" id="Imageprofil" class="form-control" name="Imageprofil" {% if acces == "non" %} required {% endif %} placeholder ="*Image profil" accept="image/png, image/jpeg" />
+        </div>
+      </div>
+      <div class="row">
+          <div class="password-input-box form-control col">
+            <input id="passwd" type="password" class="form-control password-input" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"  name="Mot_de_passe" required placeholder="*Mot de passe" >
+            <div class="password-checklist">
+              <h3 class="checklist-title">Le mot de passe doit contenir :</h3>
+
+              <ul class="checklist">
+                  <li class="list-item">Au moins 8 caractères</li>
+                  <li class="list-item">Au moins 1 chiffre</li>
+                  <li class="list-item">Au moins 1 minuscule</li>
+                  <li class="list-item">Au moins 1 majuscule</li>
+                  <li class="list-item">Au moins 1 caractère spécial</li>
+              </ul>
+            </div>
+          </div>
+      </div>
+      <div class="row">
+        <div class="col">
+        <input id="confirm_passwd" type="password" class="form-control" name="confirm_passwd" required placeholder="*Confirmer le mot de passe" required onkeyup="validate_password()">
+        </div>
+      </div>
+        <span id="wrong_pass_alert"></span>
+        <div id="formoptions" class="d-flex justify-content-between">
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" onclick="showpass()" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault"> Afficher le mot de passe </label>
+                        </div>
+
+                        <p id="forgetpasswd" class="f-bold">Mot de passe oublié ?</p>
+     </div>
+    
+    <!-- idutilisateur = 11 tant que pas de connexion
+    <input  type="hidden" id="idutilisateur" name="idutilisateur" value="11"/>  
+   -->
+    <!-- idutilisateur = celui de l'utilisateur connecté    -->
+    <div id="noaccount" class="d-flex ">
+                <p>Déjà un compte ? </p><a id="noaccounttext" href="?action=login">&nbspCliquez ici !</a>
+    </div>
+	  <input type="submit" id="create" class="btn btn-primary" name="inscription" onclick="wrong_pass_alert()" value="valider l'inscription"/>
+   </fieldset>
+    </div>
+    
+                <div id="containimg">
+                    <img src="assets/imgpageco.png" class="w-100 img-flex" alt="img page de connexion">
+                </div>
+        </div>  
+        
+        </div>
+    
+{% endblock %}

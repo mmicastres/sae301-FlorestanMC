@@ -2,7 +2,7 @@
 
 {% block section %}
 <form method="post" action="index.php" class="well">
-<fieldset><legend>Choix de l'itineraire à supprimer</legend>
+<fieldset><legend>Choix de l'utilisateur à supprimer</legend>
     <select name="iditi" class="form-control form-control-sm">
     {% for iti in itis %}
       <option value="{{iti.idIti}}">{{iti.lieuDepart}} - {{iti.lieuArrivee}} - {{iti.dateDepart}}</option>
