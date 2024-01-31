@@ -2,6 +2,8 @@
 
 {% block section %}
 
+  <h1 class="mt-5">AJOUT CATEGORIES :</h1>
+
    <form method="post" action="index.php" class="well">
 
     <fieldsetclass="form-group">
@@ -10,7 +12,8 @@
         <div class="col">
         <input type="text" id="Nom_Categorie" class="form-control" name="Nom_Categorie" required placeholder="*Nom de la catégorie">
         </div>
-        <input type="submit" id="create" class="btn btn-primary" name="categorieajout" value="valider l'ajout"/>
+        <br>
+        <input type="submit" class="btn btn-primary create" name="categorieajout" value="valider l'ajout"/>
    </fieldset>
    </form>
 {% endblock %}

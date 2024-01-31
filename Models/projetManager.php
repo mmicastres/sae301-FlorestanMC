@@ -21,7 +21,7 @@ class ProjetManager {
 	*/
 	public function getProjets() {
 		$projs = array();
-		$req = "SELECT Id_Projet, Titre, Description, Image, Id_Contexte FROM SAE301_Projet";
+		$req = "SELECT Id_Projet, SAE301_Contexte.Identifiant, SAE301_Contexte.Intitule, Titre, Description, Image, SAE301_Contexte.Id_Contexte FROM SAE301_Projet INNER JOIN SAE301_Contexte ON SAE301_Contexte.Id_Contexte = SAE301_Projet.Id_Contexte";
 		$stmt = $this->_db->prepare($req);
 		$stmt->execute();
 		// pour debuguer les requêtes SQL
@@ -90,10 +90,32 @@ class ProjetManager {
 		}
 		return $projs;
 	}
-
+	
 	/**
-	* retourne l'ensemble des itinéraires présents dans la BD pour un membre
-	* @param int idmembre
+	* retourne l'ensemble des ressources d'un projet présents dans la BD pour un utilisateur
+	* @param int utilisateur
+	* @return Projet[]
+	*/
+	public function getRessourcesProjet($idutilisateur) {
+		$ressources = array();
+		$req = "SELECT Identifiant, Intitule FROM `SAE301_Projet` INNER JOIN SAE301_Contexte ON SAE301_Contexte.Id_Contexte = SAE301_Projet.Id_Contexte INNER JOIN SAE301_Contribue ON SAE301_Contribue.Id_Projet = SAE301_Projet.Id_Projet INNER JOIN SAE301_Utilisateur ON SAE301_Utilisateur.Id_Utilisateur = SAE301_Contribue.Id_Utilisateur WHERE SAE301_Utilisateur.Id_Utilisateur = ?;";
+		$stmt = $this->_db->prepare($req);
+		$stmt->execute(array($idutilisateur));
+		// pour debuguer les requêtes SQL
+		$errorInfo = $stmt->errorInfo();
+		if ($errorInfo[0] != 0) {
+			print_r($errorInfo);
+		}
+		// recup des données
+		while ($donnees = $stmt->fetch())
+		{
+			$ressources[] = new Projet($donnees);
+		}
+		return $ressources;
+	}
+	/**
+	* retourne l'ensemble des projets présents dans la BD pour un utilisateur
+	* @param int utilisateur
 	* @return Projet[]
 	*/
 	public function getProjetsMembre($idutilisateur) {

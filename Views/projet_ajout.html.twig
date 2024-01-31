@@ -2,10 +2,11 @@
 
 {% block section %}
 
-   <form method="post" action="index.php" enctype="multipart/form-data" class="well">
+    <h2 id="addprojet"> Ajout d'un Projet :</h2>
+   <form method="post" id="formajoutprojet" action="index.php" enctype="multipart/form-data">
 
     <fieldsetclass="form-group">
-      <div class="row">
+      <div class="row mb-3">
         <div class="col">
         <input type="text" id="Titre" class="form-control" name="Titre" required placeholder="*Titre du projet">
         </div>
@@ -18,46 +19,46 @@
             </select>
         </div>
       </div>
-    <div class="row">
+    <div class="row mb-3">
         <div class="col">
-        <input type="text" id="Description" class="form-control" name="Description" required placeholder="*Description du projet">
+        <input type="textarea" id="Description" class="form-control" name="Description" required placeholder="*Description du projet">
         </div>
     </div>   
-      <div class="row">
+      <div class="row mb-3">
         <div class="col">
-        <label for="Image">Veuillez déposer votre fichier ici :</label>
+        <label class="mb-2" for="Image">Veuillez déposer votre fichier ici :</label>
         <input type="file" id="Image" class="form-control" name="Image" required placeholder ="*Image" accept="image/png, image/jpeg" />
         </div>
       </div>
-      <div class="row">
+      <div class="row mb-3">
         <div class="col">
         <input id="Demo" type="text" class="form-control" name="Demo" required placeholder="*Lien vers la démo">
         </div>
       </div>
-      <div class="row">
+      <div class="row mb-3">
         <div class="col"> 
         <input id="Sources" type="text" class="form-control" name="Sources" required placeholder="*Liens vers les sources" style="min-width:100%">
         </div>
       </div>
       <div class="d-flex">
       {% for utilisateur in utilisateurs %}
-      <input class="form-check-input" type="checkbox" name="Contributeurs[]" value="{{utilisateur.idutilisateur}}" id="{{utilisateur.nom}}{{utilisateur.prenom}}">
-      <label class="form-check-label" for="flexCheckDefault">{{utilisateur.nom}} {{utilisateur.prenom}}</label>
+      <input class="form-check-input mr-3" type="checkbox" name="Contributeurs[]" value="{{utilisateur.idutilisateur}}" id="{{utilisateur.nom}}{{utilisateur.prenom}}">
+      <label class="form-check-label mr-3" for="flexCheckDefault">{{utilisateur.nom}} {{utilisateur.prenom}}</label>
       {% endfor %}
       </div>
       <div class="d-flex">
       {% for tag in tags %}
-      <input class="form-check-input" type="checkbox" name="Tags[]" value="{{tag.idtag}}" id="{{tag.nomtag}}">
-      <label class="form-check-label" for="flexCheckDefault">{{tag.nomtag}}</label>
+      <input class="form-check-input mr-3" type="checkbox" name="Tags[]" value="{{tag.idtag}}" id="{{tag.nomtag}}">
+      <label class="form-check-label mr-3" for="flexCheckDefault">{{tag.nomtag}}</label>
       {% endfor %}
       </div>
       <div class="d-flex">
       {% for categorie in categories %}
-      <input class="form-check-input" type="checkbox" name="Categories[]" value="{{categorie.idcategorie}}" id="{{categorie.nomcategorie}}">
-      <label class="form-check-label" for="flexCheckDefault">{{categorie.nomcategorie}}</label>
+      <input class="form-check-input mr-3" type="checkbox" name="Categories[]" value="{{categorie.idcategorie}}" id="{{categorie.nomcategorie}}">
+      <label class="form-check-label mr-3" for="flexCheckDefault">{{categorie.nomcategorie}}</label>
       {% endfor %}
       </div>
-    <input type="submit" id="create" class="btn btn-primary" name="valider_addprojet" value="Ajouter le projet"/>
+    <input type="submit" class="btn create mt-3" name="valider_addprojet" value="Ajouter le projet"/>
     
    </fieldset>
    </form>

@@ -236,7 +236,7 @@ function utilisateurConnexion($data) {
 	* @return rien
 	*/
 	function utilisateurFormulaire() {
-		echo $this->twig->render('membre_connexion.html.twig',array('acces'=> $_SESSION['acces'])); 
+		echo $this->twig->render('utilisateur_connexion.html.twig',array('acces'=> $_SESSION['acces'])); 
 	}
 	
 	/**

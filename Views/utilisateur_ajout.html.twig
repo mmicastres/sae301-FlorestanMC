@@ -3,12 +3,12 @@
 
 {% block section %}
 
-    <h1>Ajout Utilisateur :</h1>
+    <h1 class="mt-5">Ajout Utilisateur :</h1>
   
    <form method="post" action="index.php" class="well" enctype="multipart/form-data">
                     <fieldsetclass="form-group">
 
-      <div class="row">
+      <div class="row mb-3">
         <div class="col">
         <input type="text" id="Nom" class="form-control" name="Nom" required placeholder="*Nom">
         </div>
@@ -16,23 +16,23 @@
         <input type="text" id="Prenom" class="form-control" name="Prenom" required placeholder="*Prénom">
         </div>
       </div>
-      <div class="row">
+      <div class="row mb-3">
         <div class="col">
         <input type="text" id="Mail" class="form-control" name="Mail" required placeholder="*Email">
         </div>
       </div>
-      <div class="row">
+      <div class="row mb-3">
         <div class="col">
         <input id="Identifiant_IUT" type="text" class="form-control" name="Identifiant_IUT" required placeholder="*Identifiant IUT">
         </div>
       </div>
-      <div class="row">
+      <div class="row mb-3">
         <div class="col">
-          <label for="Imageprofil">Déposez votre Image ici</label>
+          <label class="mb-2" for="Imageprofil">Déposez votre Image ici</label>
           <input type="file" id="Imageprofil" class="form-control" name="Imageprofil" placeholder ="*Image profil" accept="image/png, image/jpeg" />
         </div>
       </div>
-      <div class="row">
+      <div class="row mb-3" style="width: 1257px; margin-left: 0px;">
           <div class="password-input-box form-control col">
             <input id="passwd" type="password" class="form-control password-input" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"  name="Mot_de_passe" required placeholder="*Mot de passe" >
             <div class="password-checklist">
@@ -50,7 +50,7 @@
       </div>
       <div class="row">
         <div class="col">
-        <input id="confirm_passwd" type="password" class="form-control" name="confirm_passwd" required placeholder="*Confirmer le mot de passe" required onkeyup="validate_password()">
+        <input id="confirm_passwd" type="password" class="form-control mb-2" name="confirm_passwd" required placeholder="*Confirmer le mot de passe" required onkeyup="validate_password()">
         </div>
       </div>
         <span id="wrong_pass_alert"></span>
@@ -60,7 +60,7 @@
                             <input class="form-check-input" type="checkbox" onclick="showpass()" id="flexCheckDefault">
                             <label class="form-check-label" for="flexCheckDefault"> Afficher le mot de passe </label>
                         </div>
-                        <input type="submit" id="create" class="btn btn-primary" name="inscription" onclick="wrong_pass_alert()" value="valider l'inscription"/>
+                        <input type="submit" class="btn create" name="inscription" onclick="wrong_pass_alert()" value="valider l'inscription"/>
    </fieldset>
    </form>
 {% endblock %}
